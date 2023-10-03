@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer-Vision with Transformers Community Course</title>
+  <!-- replace the lines 8 and 9 if you like more bootstrap or someting like that (maybe tailwind) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    .navbar-item.is-active {
+      background-color: #3273dc;
+      color: #fff;
+    }
+    .chapter-content {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">
+        <img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="HuggingFace Logo">
+      </a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item is-active" onclick="showChapterContent(1)">
+          <span class="icon is-small mr-2">
+            <i class="fas fa-book"></i>
+          </span>
+          Chapter 01
+        </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            <span class="icon is-small mr-2">
+              <i class="fas fa-book"></i>
+            </span>
+            Chapter 02
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" onclick="showChapterContent(2.1)">
+              <span class="icon is-small mr-2">
+                <i class="fas fa-caret-right"></i>
+              </span>
+              Subchapter 2.1
+            </a>
+            <a class="navbar-item" onclick="showChapterContent(2.2)">
+              <span class="icon is-small mr-2">
+                <i class="fas fa-caret-right"></i>
+              </span>
+              Subchapter 2.2
+            </a>
+          </div>
+        </div>
+        <!-- YOU CAN ADD MORE CHAPTERS HERE JUST WITH CONTROL C CONTROL V WITH THE CODE UPPER THIS QUOTE AND PASTE BELLOW THIS. -->
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-one-third">
+          <h2 class="title is-4">Comments</h2>
+          <div class="box">
+            <ol>
+              <li>Step 1</li>
+              <li>Step 2</li>
+              <li>Step 3</li>
+              <!-- THE SAME HERE WITH THE CODE -->
+            </ol>
+          </div>
+        </div>
+        <div class="column">
+          <h2 class="title is-4">Content</h2>
+          <div id="chapterContent"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".navbar-burger").click(function() {
+        $(".navbar-burger").toggleClass("is-active");
+        $(".navbar-menu").toggleClass("is-active");
+      });
+    });
+
+    function showChapterContent(chapterNumber) {
+      // delete the prev content for the chapter
+      $("#chapterContent").empty();
+      
+      var jupyterNotebookHTML = "";
+      switch(chapterNumber) {
+        case 1:
+          jupyterNotebookHTML = '<iframe src="https://nbviewer.jupyter.org/github/notvicent3/odmlbook/blob/main/JupyterNotebookSource/odmlbook_chapter01.ipynb" width="100%" height="600px"></iframe>';
+          break;
+        case 2.1:
+          jupyterNotebookHTML = '<iframe src="https://nbviewer.jupyter.org/github/notvicent3/odmlbook/blob/main/JupyterNotebookSource/odmlbook_chapter02_1.ipynb" width="100%" height="600px"></iframe>';
+          break;
+        case 2.2:
+          jupyterNotebookHTML = '<iframe src="https://nbviewer.jupyter.org/github/notvicent3/odmlbook/blob/main/JupyterNotebookSource/odmlbook_chapter02_2.ipynb" width="100%" height="600px"></iframe>';
+          break;
+        // PUT THE THINGS WORKING HERE IF YOU MODIFY THIS
+      }
+      
+      $("#chapterContent").append('<div class="chapter-content">' + jupyterNotebookHTML + '</div>');
+    }
+  </script>
+</body>
+</html>
